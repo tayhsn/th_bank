@@ -14,8 +14,6 @@ export const Contas = sequelize.define('contas', {
 	},
 });
 
-
-
 //força a criação caso ainda não exista
 // Contas.sync({ force: true });
 
