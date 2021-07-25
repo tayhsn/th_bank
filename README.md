@@ -25,6 +25,7 @@ Este projeto é baseado no <a href="https://github.com/funcional-health/challeng
 
 - Utiliza o banco de dados MySQL.
 - Utiliza a biblioteca Sequelize para conexão com o banco.
+- Utiliza o Nodemon para rodar a aplicação.
 
 
 
