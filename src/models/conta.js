@@ -1,4 +1,4 @@
-import { sequelize } from '../database.js';
+import { sequelize } from '../database/database.js';
 import Sequelize from 'sequelize';
 
 // cria a tabela
