@@ -1,13 +1,13 @@
-import Conta from '../types/contas.js';
+import Contas from '../types/contas.js';
 import ContaInput from '../types/contaInput.js';
 import service from '../../services/service.js';
 
 const contaMutation = {
 	sacar: {
-		type: Conta,
+		type: Contas,
 		args: {
 			conta: {
-				nome: 'conta',
+				name: 'conta',
 				type: ContaInput,
 			},
 		},
@@ -16,10 +16,10 @@ const contaMutation = {
 		},
 	},
 	depositar: {
-		type: Conta,
+		type: Contas,
 		args: {
 			conta: {
-				nome: 'conta',
+				name: 'conta',
 				type: ContaInput,
 			},
 		},
