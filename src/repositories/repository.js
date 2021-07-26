@@ -2,7 +2,7 @@ import { Contas } from '../models/conta.js';
 
 async function getConta(conta) {
 	const contas = await Contas.findAll();
-	const Conta = contas.find((acc) => acc.conta === conta);
+	const Conta = contas.find((acc) => acc.conta === parseInt(conta));
 	return Conta;
 }
 
