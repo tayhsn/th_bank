@@ -43,9 +43,10 @@ Este projeto é baseado no <a href="https://github.com/funcional-health/challeng
 
   ```npm start```
 
-Para o consumo da API foi utilizada a plataforma open-source Insomnia: https://insomnia.rest/download
+Para o consumo da API foi utilizada a plataforma open-source Insomnia: https://insomnia.rest/download. Mas sinta-se a vontade para utilizar a da sua preferência.
 
-Mas sinta-se a vontade para utilizar a da sua preferência.
+- Para consumir a API REST, use a rota ```/ ``` (root)
+- Para consumir o GraphQL, use a rota ```/graphql``` (👷‍♂️🚧 estamos trabalhando nela)
 
 
 
