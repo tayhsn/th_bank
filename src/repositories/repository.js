@@ -6,8 +6,10 @@ async function getContas() {
 
 async function getConta(conta) {
 	const AllContas = await getContas();
-	const dadosConta = AllContas.find((acc) => acc.conta === parseInt(conta));
-	return dadosConta;
+	const aConta = AllContas.find((acc) =>
+		(acc.conta === typeof conta) === String ? parseInt(conta) : conta,
+	);
+	return aConta;
 }
 
 async function getSaldo(conta) {
