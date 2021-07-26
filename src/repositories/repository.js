@@ -1,9 +1,13 @@
 import { Contas } from '../models/conta.js';
 
+async function getContas() {
+	return await Contas.findAll();
+}
+
 async function getConta(conta) {
-	const contas = await Contas.findAll();
-	const Conta = contas.find((acc) => acc.conta === parseInt(conta));
-	return Conta;
+	const AllContas = await getContas();
+	const dadosConta = AllContas.find((acc) => acc.conta === parseInt(conta));
+	return dadosConta;
 }
 
 async function getSaldo(conta) {
@@ -18,34 +22,34 @@ async function getSaldo(conta) {
 	}
 }
 
-async function sacar(conta, valor) {
-	try {
-		const Conta = await getConta(conta);
-		if (Conta) {
-			if (Conta.saldo >= valor) {
-				Conta.decrement('saldo', { by: valor });
-				return await getConta(Conta);
-			} else {
-				return 'Saldo insuficiente';
+function sacar(conta, valor) {
+	const sacar = new Promise((resolve, reject) => {
+		getConta(conta).then((dados) => {
+			if (dados) {
+				if (dados.dataValues.saldo >= valor) {
+					dados.decrement('saldo', { by: valor });
+					resolve(dados);
+				} else {
+					reject('Saldo insuficiente');
+				}
 			}
-		}
-		return 'Conta não encontrada.';
-	} catch (error) {
-		console.log(error);
-	}
+			reject('Conta não encontrada.');
+		});
+	});
+	return sacar;
 }
 
-async function depositar(conta, valor) {
-	try {
-		const Conta = await getConta(conta);
-		if (Conta) {
-			Conta.increment('saldo', { by: valor });
-			return await getConta(Conta);
-		}
-		return 'Conta não encontrada.';
-	} catch (error) {
-		console.log(error);
-	}
+function depositar(conta, valor) {
+	const depositar = new Promise((resolve, reject) => {
+		getConta(conta).then((dados) => {
+			if (dados) {
+				dados.increment('saldo', { by: valor });
+				resolve(dados);
+			}
+			reject('Conta não encontrada.');
+		});
+	});
+	return depositar;
 }
 
 export default { getSaldo, sacar, depositar };

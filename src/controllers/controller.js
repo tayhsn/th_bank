@@ -15,7 +15,7 @@ async function getSaldo(req, res) {
 	}
 }
 
-async function sacar(req, res) {
+function sacar(req, res) {
 	try {
 		let conta = req.body.conta;
 		let valor = req.body.valor;
@@ -24,14 +24,16 @@ async function sacar(req, res) {
 			res.send('Por favor, informe conta e valor do saque.');
 		}
 
-		let dados = await service.sacar(conta, valor);
-		res.send(dados);
+		service
+			.sacar(conta, valor)
+			.then((dados) => res.send(dados))
+			.catch((e) => res.send(e));
 	} catch (err) {
 		console.log(err);
 	}
 }
 
-async function depositar(req, res) {
+function depositar(req, res) {
 	try {
 		let conta = req.body.conta;
 		let valor = req.body.valor;
@@ -40,8 +42,10 @@ async function depositar(req, res) {
 			res.send('Por favor, informe conta e valor do depósito.');
 		}
 
-		let dados = await service.depositar(conta, valor);
-		res.send(dados);
+		service
+			.depositar(conta, valor)
+			.then((dados) => res.send(dados))
+			.catch((e) => res.send(e));
 	} catch (err) {
 		console.log(err);
 	}
