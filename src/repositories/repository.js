@@ -2,7 +2,7 @@ import { Contas } from '../models/conta.js';
 
 async function getConta(conta) {
 	const contas = await Contas.findAll();
-	const Conta = contas.find((acc) => acc.conta === parseInt(conta));
+	const Conta = contas.find((acc) => acc.conta === conta);
 	return Conta;
 }
 
@@ -23,12 +23,13 @@ async function sacar(conta, valor) {
 		const Conta = await getConta(conta);
 		if (Conta) {
 			if (Conta.saldo >= valor) {
-				return await Conta.decrement('saldo', { by: valor });
+				Conta.decrement('saldo', { by: valor });
+				return await getConta(Conta);
 			} else {
 				return 'Saldo insuficiente';
 			}
 		}
-		res.send('Conta não encontrada.');
+		return 'Conta não encontrada.';
 	} catch (error) {
 		console.log(error);
 	}
@@ -38,7 +39,8 @@ async function depositar(conta, valor) {
 	try {
 		const Conta = await getConta(conta);
 		if (Conta) {
-			return await Conta.increment('saldo', { by: valor });
+			Conta.increment('saldo', { by: valor });
+			return await getConta(Conta);
 		}
 		return 'Conta não encontrada.';
 	} catch (error) {
