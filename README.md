@@ -12,12 +12,12 @@ Este projeto é baseado no <a href="https://github.com/funcional-health/challeng
 
 ### -> Obrigatórios
 
-- A API deve ser desenvolvida em Node.js.
-- O projeto deve ter testes unitários com cobertura de testes >= a 85%.
+- A API deve ser desenvolvida em Node.js. ✔
+- O projeto deve ter testes unitários com cobertura de testes >= a 85%. ✔
 
 ### -> Desejáveis
 
-- Implementar API com GraphQL.
+- Implementar API com GraphQL. ✔
 
   
 
